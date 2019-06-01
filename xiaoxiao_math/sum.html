@@ -11,11 +11,12 @@
   <!--<h1>site : {{site}}</h1>
   <h1>url : {{url}}</h1>
   <!-->
-  <h1>开始答题， {{alexa}}    <input type="text" v-model="inputNumber" @change="initQuestion"></h1>
+  <h1>笑笑，好好做数学哦 </h1>
+  <h1>{{alexa}}    <input type="text" v-model="inputNumber" @change="initQuestion"></h1>
 
 
   <ol>
-    <li v-for="index in 20" >
+    <li v-for="index in 10" >
       {{ data1[index-1] }} + {{ data2[index-1] }}  =  <input type="text" v-model="data3[index-1]" />; {{ data4[index-1] }}
     </li>
   </ol>
@@ -24,7 +25,7 @@
 </div>
 <script type="text/javascript">
   // 我们的数据对象
-  var data = { site: "菜鸟教程", url: "www.runoob.com", alexa: "请输入期望多少以内的加法", inputNumber:50, data1: [], data2: [], data3: [], data4: []}
+  var data = { site: "菜鸟教程", url: "www.runoob.com", alexa: " 今天做加法：多少以内的啊？", inputNumber:50, data1: [], data2: [], data3: [], data4: []}
   var vm = new Vue({
     el: '#vue_det',
 
@@ -38,7 +39,8 @@
         this.data1=[];
         this.data2=[];
         this.data3=[];
-        for(var i=0; i<20; i++){
+		this.data4=[];
+        for(var i=0; i<10; i++){
           this.data1.push(Math.floor(Math.random()* (this.inputNumber-1) + 1));
           this.data2.push(Math.floor(Math.random()* (this.inputNumber-this.data1[i]) + 1));
         }
@@ -46,10 +48,10 @@
       sumbitAnswer(){
         this.data4=[];
         var totalScore=0;
-        for(var i=0; i<20; i++){
+        for(var i=0; i<10; i++){
           if(this.data3[i]==this.data1[i]+this.data2[i]){
             this.data4.push('✅');
-            totalScore += 5;
+            totalScore += 10;
           }else {
             this.data4.push('×');
           }
