@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+
+
+<div id="vue_det">
+  <!--<h1>site : {{site}}</h1>
+  <h1>url : {{url}}</h1>
+  <!-->
+  <h1>笑笑，好好做数学哦 </h1>
+  <h1>{{alexa}}    <input type="text" v-model="inputNumber" @change="initQuestion"></h1>
+
+
+  <ol>
+    <li v-for="index in 10" >
+      {{ data1[index-1] }} - {{ data2[index-1] }}  =  <input type="text" v-model="data3[index-1]" />; {{ data4[index-1] }}
+    </li>
+  </ol>
+
+  <h1> <button v-on:click="sumbitAnswer">提交</button>  </h1>
+</div>
+<script type="text/javascript">
+  // 我们的数据对象
+  var data = { site: "菜鸟教程", url: "www.runoob.com", alexa: " 今天做减法：多少以内的啊？", inputNumber:50, data1: [], data2: [], data3: [], data4: []}
+  var vm = new Vue({
+    el: '#vue_det',
+
+    data: data,
+    mounted: function() {
+      this.initQuestion();
+    },
+    methods: {
+      initQuestion(){
+        //alert(this.inputNumber);
+        this.data1=[];
+        this.data2=[];
+        this.data3=[];
+		this.data4=[];
+        for(var i=0; i<10; i++){
+		var num1 = Math.floor(Math.random()* (this.inputNumber-1) + 1);
+          this.data1.push(num1);
+          this.data2.push(Math.floor(Math.random()* (num1) + 1));
+        }
+      },
+      sumbitAnswer(){
+        this.data4=[];
+        var totalScore=0;
+        for(var i=0; i<10; i++){
+          if(this.data3[i]==this.data1[i]-this.data2[i]){
+            this.data4.push('✅');
+            totalScore += 10;
+          }else {
+            this.data4.push('×');
+          }
+        }
+        alert("你得了"+ totalScore + "分！！！");
+
+      }
+    }
+  })
+
+</script>
+
+</html>
